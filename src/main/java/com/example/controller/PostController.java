@@ -21,6 +21,7 @@ public class PostController {
     @PostMapping("/saveOrUpdate")
     public ResponseEntity<Post> saveOrUpdate(@RequestBody Post post) {
         post.setDate(Date.valueOf(LocalDate.now()));
+
         Post existPost = postRep.findOne(post.getId());
         if (existPost != null) {
             existPost.setTitle(post.getTitle());

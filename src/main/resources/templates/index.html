@@ -13,14 +13,22 @@
     <div class="small-12 medium-12 columns">
 
         <h1>My Blog</h1>
-        <table style="text-align: center">
+
+        <th:block th:each="post : ${posts}">
+            <h3 th:text="${post.title}"></h3>
+            <i class="fi-calendar"> </i><span  th:text="${post.date}"> </span><span> | <i class="fi-price-tag"> </i></span><span th:text="${post.tag.tag}"></span>
+            <p th:text="${post.text}"></p>
+            <hr>
+
+        </th:block>
+       <!-- <table>
 
             <tbody>
             <th:block th:each="post : ${posts}">
 
-                <tr>
+               &lt;!&ndash; <tr>
                     <td th:text="${post.id}"></td>
-                </tr>
+                </tr>&ndash;&gt;
                 <tr>
                     <td th:text="${post.title}"></td>
                 </tr>
@@ -37,7 +45,7 @@
             </th:block>
 
             </tbody>
-        </table>
+        </table>-->
 
 
         <!--<form th:action="@{/save}" method="post" th:object="${newBook}">-->
