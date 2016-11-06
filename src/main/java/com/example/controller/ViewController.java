@@ -19,7 +19,7 @@ public class ViewController {
         ModelAndView mv = new ModelAndView("index");
 
         List<Post> findedPosts = postRep.findAll();
-        mv.addObject("post", findedPosts);
+        mv.addObject("posts", findedPosts);
 //        mv.addObject("newPost", new Post());
         return mv;
 

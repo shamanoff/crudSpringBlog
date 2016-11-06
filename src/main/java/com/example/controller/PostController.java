@@ -16,7 +16,7 @@ public class PostController {
     @Autowired
     private TagRep tagRep;
 
-    @PostMapping("./saveOrUpdate")
+    @PostMapping("/saveOrUpdate")
     public ResponseEntity<Post> saveOrUpdate(@RequestBody Post post) {
 
         Post existPost = postRep.findOne(post.getId());
@@ -33,18 +33,18 @@ public class PostController {
 
     }
 
-    @GetMapping("./findAll")
+    @GetMapping("/findAll")
     public ResponseEntity<List<Post>> findAll() {
         return ResponseEntity.ok(postRep.findAll());
     }
 
-    @GetMapping("./findOne{id}")
+    @GetMapping("/findOne{id}")
     public ResponseEntity<Post> findOne(@PathVariable("id") Long id) {
         return ResponseEntity.ok(postRep.findOne(id));
 
     }
 
-    @DeleteMapping("./delete{id}")
+    @DeleteMapping("/delete{id}")
     public ResponseEntity<Post> delete(@PathVariable("id") Long id) {
         Post post = postRep.findOne(id);
         postRep.delete(id);

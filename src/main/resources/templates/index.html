@@ -14,21 +14,26 @@
     <div class="small-12 medium-12 columns">
 
         <h1>My Blog</h1>
-        <table style="text-align: center">
+       <table style="text-align: center">
 
             <tbody>
-            <tr th:each="pub : ${post}">
+            <tr th:each="post : ${posts}">
 
-                    <tr  th:text="${pub.id}"></tr>
-                    <tr  th:text="${pub.title}"></tr>
-                    <tr  th:text="${pub.text}"></tr>
-                    <tr  th:text="${pub.date}"></tr>
-                    <tr  th:text="${pub.tag.tag_name}"></tr>
+                    <tr  th:text="${id}"></tr>
+                    <tr  th:text="${title}"></tr>
+                    <tr  th:text="${text}"></tr>
+                    <tr  th:text="${date}"></tr>
+                    <tr  th:text="${tag.tag_name}"></tr>
 
             </tr>
 
             </tbody>
         </table>
+
+
+
+
+
         <!--<form th:action="@{/save}" method="post" th:object="${newBook}">-->
             <!--&lt;!&ndash;     <label>ID-->
                      <!--<input type="text" th:field="*{id}">-->
