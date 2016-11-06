@@ -24,12 +24,12 @@ public class Post {
   @Column(name = "date")
   private java.sql.Date date;
   @Column(name = "tag")
-  private Long tag;
+  private Long tagId;
 
 
   @ManyToOne
   @JoinColumn(name = "tag", insertable = false, updatable = false)
-  private Tag tag_name;
+  private Tag tag;
 
 
   public Post() {
@@ -42,7 +42,7 @@ public class Post {
             ", title='" + title + '\'' +
             ", text='" + text + '\'' +
             ", date=" + date +
-            ", tag=" + tag +
+            ", tagId=" + tagId +
             '}';
   }
 }

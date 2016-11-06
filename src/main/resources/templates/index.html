@@ -7,60 +7,66 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.4/foundation.css"/>
 
 
-
 </head>
 <body>
 <div class="row">
     <div class="small-12 medium-12 columns">
 
         <h1>My Blog</h1>
-       <table style="text-align: center">
+        <table style="text-align: center">
 
             <tbody>
-            <tr th:each="post : ${posts}">
+            <th:block th:each="post : ${posts}">
 
-                    <tr  th:text="${id}"></tr>
-                    <tr  th:text="${title}"></tr>
-                    <tr  th:text="${text}"></tr>
-                    <tr  th:text="${date}"></tr>
-                    <tr  th:text="${tag.tag_name}"></tr>
+                <tr>
+                    <td th:text="${post.id}"></td>
+                </tr>
+                <tr>
+                    <td th:text="${post.title}"></td>
+                </tr>
+                <tr>
+                    <td th:text="${post.text}"></td>
+                </tr>
+                <tr>
+                    <td th:text="${post.date}"></td>
+                </tr>
+                <tr>
+                    <td th:text="${post.tag.tag}"></td>
+                </tr>
 
-            </tr>
+            </th:block>
 
             </tbody>
         </table>
 
 
-
-
-
         <!--<form th:action="@{/save}" method="post" th:object="${newBook}">-->
-            <!--&lt;!&ndash;     <label>ID-->
-                     <!--<input type="text" th:field="*{id}">-->
-                 <!--</label>&ndash;&gt;-->
-            <!--<label>Book-->
-                <!--<input type="text" th:field="${newBook.bookName}">-->
-            <!--</label>-->
-            <!--<label>Book Author-->
-                <!--<select th:field="*{bookAuthor}">-->
-                    <!--<option value="1">Agatha Christie</option>-->
-                    <!--<option value="2">William Shakespeare</option>-->
-                    <!--<option value="3">Paulo Coelho</option>-->
-                    <!--<option value="4">Stephen King</option>-->
-                <!--</select>-->
-            <!--</label>-->
-            <!--&lt;!&ndash;<input type="text" th:field="*{bookAuthor}">&ndash;&gt;-->
-            <!--<label>Book Genre-->
-                <!--<select th:field="*{bookGenre}">-->
-                    <!--<option value="1">classic</option>-->
-                    <!--<option value="2">comedy</option>-->
-                    <!--<option value="4">detective</option>-->
-                    <!--<option value="3">fantasy</option>-->
-                <!--</select>-->
-            <!--</label>-->
-            <!--&lt;!&ndash;<input type="text" th:field="*{bookGenre}">&ndash;&gt;-->
+        <!--&lt;!&ndash;     <label>ID-->
+        <!--<input type="text" th:field="*{id}">-->
+        <!--</label>&ndash;&gt;-->
+        <!--<label>Book-->
+        <!--<input type="text" th:field="${newBook.bookName}">-->
+        <!--</label>-->
+        <!--<label>Book Author-->
+        <!--<select th:field="*{bookAuthor}">-->
+        <!--<option value="1">Agatha Christie</option>-->
+        <!--<option value="2">William Shakespeare</option>-->
+        <!--<option value="3">Paulo Coelho</option>-->
+        <!--<option value="4">Stephen King</option>-->
+        <!--</select>-->
+        <!--</label>-->
+        <!--&lt;!&ndash;<input type="text" th:field="*{bookAuthor}">&ndash;&gt;-->
+        <!--<label>Book Genre-->
+        <!--<select th:field="*{bookGenre}">-->
+        <!--<option value="1">classic</option>-->
+        <!--<option value="2">comedy</option>-->
+        <!--<option value="4">detective</option>-->
+        <!--<option value="3">fantasy</option>-->
+        <!--</select>-->
+        <!--</label>-->
+        <!--&lt;!&ndash;<input type="text" th:field="*{bookGenre}">&ndash;&gt;-->
 
-            <!--<button type="submit" class="button" value="Submit">Add New Book or Update by ID</button>-->
+        <!--<button type="submit" class="button" value="Submit">Add New Book or Update by ID</button>-->
         <!--</form>-->
     </div>
 </div>
@@ -69,7 +75,6 @@
 
 <script>
     $(document).foundation();
-
 
 
 </script>
