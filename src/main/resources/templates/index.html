@@ -15,8 +15,8 @@
         <h1>My Blog</h1>
 
         <th:block th:each="post : ${posts}">
-            <h3 th:text="${post.title}"></h3>
             <i class="fi-calendar"> </i><span  th:text="${post.date}"> </span><span> | <i class="fi-price-tag"> </i></span><span th:text="${post.tag.tag}"></span>
+            <h3 th:text="${post.title}"></h3>
             <p th:text="${post.text}"></p>
             <hr>
 
