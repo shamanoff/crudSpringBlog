@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -20,7 +18,7 @@ public class PostController {
 
     @PostMapping("/saveOrUpdate")
     public ResponseEntity<Post> saveOrUpdate(@RequestBody Post post) {
-        post.setDate(Date.valueOf(LocalDate.now()));
+
 
         Post existPost = postRep.findOne(post.getId());
         if (existPost != null) {

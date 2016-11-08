@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -22,7 +24,7 @@ public class Post {
   @Column(name = "text")
   private String text;
   @Column(name = "date")
-  private java.sql.Date date;
+  private Timestamp date;
   @Column(name = "tag")
   private Long tagId;
 
@@ -33,6 +35,7 @@ public class Post {
 
 
   public Post() {
+    this.date = Timestamp.valueOf(LocalDateTime.now());
   }
 
   @Override
