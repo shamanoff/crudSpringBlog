@@ -1,6 +1,5 @@
 package com.example.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,7 +9,6 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @Table(name = "roles")
 public class Roles implements GrantedAuthority {
   @Id
@@ -19,8 +17,6 @@ public class Roles implements GrantedAuthority {
   @Column
   private String role;
 
-  public Roles() {
-  }
 
   @Override
   public String toString() {

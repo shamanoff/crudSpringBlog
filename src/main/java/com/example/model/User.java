@@ -20,25 +20,23 @@ import static javax.persistence.FetchType.EAGER;
 @Table(name = "user")
 public class User implements UserDetails{
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private Long user_id;
-  @Column
-  private String user_name;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "user_id")
+  private Long userId;
+  @Column(name = "user_name")
+  private String username;
   @Column
   private String password;
 
   @Transient
   private String confirmPassword;
 
-  @Column
-  private Long user_role;
-
 
   @ManyToMany(fetch = EAGER)
   @JoinTable(
           name = "user_role",
-          joinColumns = @JoinColumn(name = "user_name", referencedColumnName = "user_name"),
-          inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id")
+          joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+          inverseJoinColumns = @JoinColumn(name = "user_role", referencedColumnName = "id")
   )
   private List<Roles> roles;
 
@@ -49,9 +47,8 @@ public class User implements UserDetails{
   @Override
   public String toString() {
     return "User{" +
-            "user_id=" + user_id +
-            ", user_name='" + user_name + '\'' +
-            ", user_role=" + user_role +
+            "userId=" + userId +
+            ", username='" + username + '\'' +
             ", password=" + password +
             '}';
   }
@@ -61,31 +58,27 @@ public class User implements UserDetails{
     if (this == o) return true;
     if (!(o instanceof User)) return false;
     User user = (User) o;
-    return Objects.equals(getUser_id(), user.getUser_id()) &&
-            Objects.equals(getUser_name(), user.getUser_name()) &&
-            Objects.equals(getUser_role(), user.getUser_role()) &&
+    return Objects.equals(getUserId(), user.getUserId()) &&
+            Objects.equals(getUsername(), user.getUsername()) &&
             Objects.equals(getPassword(), user.getPassword());
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(getUser_id(), getUser_name(), getUser_role(), getPassword());
+    return Objects.hash(getUserId(), getUsername(),  getPassword());
   }
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
-    return null;
+    return roles;
   }
 
   @Override
   public String getUsername() {
-    return this.user_name;
+    return this.username;
   }
 
-  public List<Roles> getRole(){
-    return roles;
 
-  }
 
 
   @Override
@@ -108,9 +101,6 @@ public class User implements UserDetails{
     return true;
   }
 
-  public Long setUser_role(List<Roles> roles) {
-    return this.user_role;
-  }
 
   public String getConfirmPassword() {
     return confirmPassword;

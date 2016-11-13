@@ -1,8 +1,11 @@
 package com.example.config;
 
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -12,6 +15,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
@@ -28,9 +32,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/login").permitAll()
+                .antMatchers("/login","/registration").permitAll()
                 .antMatchers("/css/**", "/js/**", "/fonts/**", "/webjars/**").permitAll()
-                .antMatchers("/training/events/busy", "/events", "/calendar/**").permitAll()
                 .antMatchers("/**").authenticated()
                 .and()
                 .formLogin().loginPage("/login").defaultSuccessUrl("/index", true)
@@ -61,10 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return provider;
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new StandardPasswordEncoder();
-    }
+
 
     @Autowired
     public SecurityConfig setUserDao(UserDetailsService userDao) {
@@ -72,4 +72,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.userDao = userDao;
         return this;
     }
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
+
+/*    @Bean
+    public MessageSource messageSource() {
+        val source = new ResourceBundleMessageSource();
+        source.setBasename("static\\messages");
+        source.setDefaultEncoding("UTF-8");
+        return source;
+    }*/
 }

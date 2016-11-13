@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation-icons/3.0/foundation-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.4/foundation.css"/>
+
+
+</head>
+<body>
+<div class="row">
+    <div class="top-bar"><h1>Sign Up</h1>
+</div>
+<hr>
+
+
+<div class="row">
+
+
+    <div class="small-12 medium-4 columns">
+
+
+    </div>
+
+    <div class="small-12 medium-4 columns right">
+
+
+        <form th:action="@{/registration}" method="post">
+
+            <label>User Name
+                <input type="text" name="username">
+            </label>
+
+            <label>User Password
+                <input type="text" name="password">
+            </label>
+            <label>Confirm Password
+                <input type="text" name="confirmPassword">
+            </label>
+
+            <button type="submit" class="button" value="Submit">Sign Up</button>
+        </form>
+        <a th:href="@{/login}">Sign Up</a>
+
+    </div>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.4/foundation.js"></script>
+
+<script>
+    $(document).foundation();
+
+
+</script>
+</body>
+</html>
