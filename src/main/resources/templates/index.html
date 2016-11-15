@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" >
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title sec:authentication="principal.username"></title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation-icons/3.0/foundation-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.4/foundation.css"/>
 
@@ -10,16 +10,32 @@
 </head>
 <body>
 <div class="row">
-    <div class="top-bar"><h1 sec:authentication="principal.username"></h1><h1> blog</h1>
-        <h3>About politics and shit like this</h3>
-        <span> | </span>
-        <a href="/logout">Log Out</a>
+    <div class="top-bar">
+        <div class="top-bar-title"><h3>Super Blog</h3></div>
+        <div class="top-bar-left">
 
+
+        </div>
+
+        <div class="top-bar-right">
+            <ul class="menu">
+                <li>
+                    <h4 class="fi-torso" sec:authentication="principal.username"></h4>
+                </li>
+                <li>
+                    <a href="/logout" class="secondary hollow button"><i class="fi-key"></i> Log Out</a>
+
+                </li>
+            </ul>
+
+        </div>
 
     </div>
-</div>
-<hr>
 
+
+</div>
+
+<hr>
 
 
 <div class="row">
@@ -41,26 +57,26 @@
     <div class="small-12 medium-4 columns right">
 
 
-                <form th:action="@{/save}" method="post" th:object="${newPost}">
-                    <!--     <label>ID
-                    <input type="text" th:field="*{id}">
-                    </label>-->
-                    <label>Title
-                        <input type="text" th:field="${newPost.title}">
-                    </label>
-                    <label>Post
-                        <textarea placeholder="О чем вы думаете?" th:field="*{text}"></textarea>
-                    </label>
-                    <!--<input type="text" th:field="*{bookAuthor}">-->
-                    <label>Tag
-                        <select th:field="*{tagId}">
-                            <option th:each="tag: ${tags}" th:value="${tag.id}" th:text="${tag.tag}"></option>
-                        </select>
-                    </label>
-                    <!--<input type="datetime" th:field="*{date}" id="date">-->
+        <form th:action="@{/save}" method="post" th:object="${newPost}">
+            <!--     <label>ID
+            <input type="text" th:field="*{id}">
+            </label>-->
+            <label>Title
+                <input type="text" th:field="${newPost.title}">
+            </label>
+            <label>Post
+                <textarea placeholder="О чем вы думаете?" th:field="*{text}"></textarea>
+            </label>
+            <!--<input type="text" th:field="*{bookAuthor}">-->
+            <label>Tag
+                <select th:field="*{tagId}">
+                    <option th:each="tag: ${tags}" th:value="${tag.id}" th:text="${tag.tag}"></option>
+                </select>
+            </label>
+            <!--<input type="datetime" th:field="*{date}" id="date">-->
 
-                    <button type="submit" class="button" value="Submit">Publish</button>
-                </form>
+            <button type="submit" class="button" value="Submit">Publish</button>
+        </form>
 
 
     </div>
