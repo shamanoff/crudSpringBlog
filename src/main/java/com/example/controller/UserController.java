@@ -3,12 +3,21 @@ package com.example.controller;
 import com.example.model.User;
 import com.example.service.ISecurityService;
 import com.example.service.IUserService;
-import com.example.validator.UserValidator;
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
+import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 
 @Controller
@@ -20,8 +29,6 @@ public class UserController {
     @Autowired
     private ISecurityService securityService;
 
-    @Autowired
-    private UserValidator userValidator;
 
     @GetMapping(value = "/registration")
     public String registration(Model model) {
@@ -31,18 +38,23 @@ public class UserController {
     }
 
     @PostMapping(value = "/registration")
-    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
-        userValidator.validate(userForm, bindingResult);
-
+    public ModelAndView registration(@ModelAttribute("userForm") @Valid User userForm, BindingResult bindingResult, Model model) {
+        val mv = new ModelAndView("registration");
         if (bindingResult.hasErrors()) {
-            return "registration";
+            List<String> messages = bindingResult
+                    .getFieldErrors()
+                    .stream()
+                    .map(DefaultMessageSourceResolvable::getDefaultMessage)
+                    .collect(toList());
+            mv.addObject("errors", messages);
+            mv.addObject("isError", true);
+            return mv;
         }
 
         userService.save(userForm);
 
         securityService.autoLogin(userForm.getUsername(), userForm.getConfirmPassword());
-
-        return "redirect:/index";
+        return new ModelAndView("redirect:/index");
     }
 
     @GetMapping(value = "/login")

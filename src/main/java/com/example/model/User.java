@@ -3,6 +3,7 @@ package com.example.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -17,13 +18,15 @@ import static javax.persistence.FetchType.EAGER;
 @Getter
 @Setter
 @AllArgsConstructor
-@Table(name = "user")
+@Table(name = "users")
 public class User implements UserDetails{
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "user_id")
   private Long userId;
+
   @Column(name = "user_name")
+  @Length(min = 4, max = 32, message = "{Size.userForm.username}")
   private String username;
   @Column
   private String password;
