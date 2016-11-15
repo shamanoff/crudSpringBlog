@@ -4,6 +4,7 @@ import com.example.model.Post;
 import com.example.model.Tag;
 import com.example.repository.PostRep;
 import com.example.repository.TagRep;
+import com.example.repository.UserRep;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,8 @@ import java.util.List;
 @Controller
 public class ViewController {
     @Autowired
+    private UserRep userRep;
+    @Autowired
     private PostRep postRep;
     @Autowired
     private TagRep tagRep;
@@ -24,6 +27,7 @@ public class ViewController {
     @GetMapping
     public ModelAndView index() {
         ModelAndView mv = new ModelAndView("index");
+//        User user = userRep.findByUsername();
         List<Tag> tags = tagRep.findAll();
         List<Post> findedPosts = postRep.findAll();
         mv.addObject("posts", findedPosts);

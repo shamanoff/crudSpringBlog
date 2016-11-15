@@ -77,7 +77,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-/*    @Bean
+ /*   @Bean
     public MessageSource messageSource() {
         val source = new ResourceBundleMessageSource();
         source.setBasename("static\\messages");

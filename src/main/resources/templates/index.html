@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" >
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -10,8 +10,13 @@
 </head>
 <body>
 <div class="row">
-    <div class="top-bar"><h1>My Blog</h1>
-        <h3>About politics and shit like this</h3></div>
+    <div class="top-bar"><h1 sec:authentication="principal.username"></h1><h1> blog</h1>
+        <h3>About politics and shit like this</h3>
+        <span> | </span>
+        <a href="/logout">Log Out</a>
+
+
+    </div>
 </div>
 <hr>
 

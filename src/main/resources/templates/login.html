@@ -10,7 +10,9 @@
 </head>
 <body>
 <div class="row">
-    <div class="top-bar"><h1>Login</h1>
+    <div class="small-12 medium-4 medium-offset-4 columns">
+        <h1>Login</h1>
+    </div>
 </div>
 
 
@@ -18,16 +20,17 @@
 <div class="row">
 
 
-    <div class="small-12 medium-4 columns">
 
 
-    </div>
-
-    <div class="small-12 medium-4 columns right">
+    <div class="small-12 medium-4 medium-offset-4 columns">
 
 
         <form th:action="@{/login}" method="post">
-
+            <div class="form-group">
+                <div th:if="${param.error}"  role="alert">
+                    Неправильный логин или пароль
+                </div>
+            </div>
             <label>User Name
                 <input type="text" name="username">
             </label>

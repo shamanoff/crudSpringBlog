@@ -10,20 +10,18 @@
 </head>
 <body>
 <div class="row">
-    <div class="top-bar"><h1>Sign Up</h1>
+    <div class="small-12 medium-4 medium-offset-4 columns">
+        <h1>Sign Up</h1>
+    </div>
 </div>
-<hr>
 
 
 <div class="row">
 
 
-    <div class="small-12 medium-4 columns">
 
 
-    </div>
-
-    <div class="small-12 medium-4 columns right">
+    <div class="small-12 medium-4 medium-offset-4 columns">
 
 
         <form th:action="@{/registration}" method="post">
@@ -41,7 +39,7 @@
 
             <button type="submit" class="button" value="Submit">Sign Up</button>
         </form>
-        <a th:href="@{/login}">Sign Up</a>
+        <a th:href="@{/login}">Log In</a>
 
     </div>
 
