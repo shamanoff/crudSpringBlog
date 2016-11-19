@@ -17,7 +17,9 @@
         <div class="top-bar-right">
             <ul class="menu">
                 <li>
-                    <h4 class="fi-torso" sec:authentication="principal.username"></h4>
+                    <!--<h4 class="fi-torso" sec:authentication="principal.username"></h4>-->
+                    Logged user: <span sec:authentication="name"></span>
+                    <!--Roles: <span sec:authentication="principal.authoritie"></span>-->
                 </li>
                 <li>
                     <a href="/logout" class="secondary hollow button"><i class="fi-key"></i> Log Out</a>
@@ -45,6 +47,7 @@
             <i class="fi-calendar"> </i><span th:text=" ${#dates.format(post.date, 'dd/MM/yyyy HH:mm')}"></span><span> | <i
                 class="fi-price-tag"> </i></span><span th:text="${post.tag.tag}"></span>
             <h3 th:text="${post.title}"></h3>
+            <i class="fi-torso"></i> Author: <span th:text="${post.author.username}"></span>
             <p th:text="${post.text}"></p>
             <hr>
 

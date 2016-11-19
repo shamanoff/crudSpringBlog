@@ -27,11 +27,18 @@ public class Post {
   private Timestamp date;
   @Column(name = "tag")
   private Long tagId;
+  @Column(name = "author_id")
+  private Long authorId;
 
 
   @ManyToOne
   @JoinColumn(name = "tag", insertable = false, updatable = false)
   private Tag tag;
+
+
+    @ManyToOne
+    @JoinColumn(name = "author_id", insertable = false, updatable = false)
+    private User author;
 
 
   public Post() {
