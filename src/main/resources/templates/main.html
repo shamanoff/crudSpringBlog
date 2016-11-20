@@ -6,35 +6,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation-icons/3.0/foundation-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.4/foundation.css"/>
     <link rel="stylesheet" th:href="@{/css/app.css}">
-   <!-- <style>
-        body{
-            background-color: #f0f0f0;
-        }
-        .top-bar{
-            background-color: black;
-            color: white;
-            padding:0 2rem 0 2rem;
-        }
-        #btnOut{
-            margin: .3rem 0rem 0 1rem;
-        }
-        textarea{
-            height:10rem;
-        }
-        #bd{
-            background-color: white;
-            padding-top: 3rem;
-        }
-        #banner{
-            background-image: url("../webapp/anonymous2.jpg");
-            background-repeat: no-repeat;
-            background-position: center;
-            width:100%;
-            height:45%;
-            -webkit-background-size:cover;
-            background-size:cover;
-        }
-    </style>-->
 
 
 </head>
@@ -68,7 +39,7 @@
 <div id="bd" class="row">
 
 
-    <div class="small-12 medium-8 columns">
+    <div class="small-12 medium-12 columns">
 
 
         <th:block th:each="post : ${posts}">
@@ -82,32 +53,34 @@
         </th:block>
     </div>
 
+<!--
     <div class="small-12 medium-4 columns right">
 
 
         <form th:action="@{/save}" method="post" th:object="${newPost}">
-            <!--     <label>ID
+            &lt;!&ndash;     <label>ID
             <input type="text" th:field="*{id}">
-            </label>-->
+            </label>&ndash;&gt;
             <label>Title
                 <input type="text" th:field="${newPost.title}">
             </label>
             <label>Post
                 <textarea placeholder="О чем вы думаете?" th:field="*{text}"></textarea>
             </label>
-            <!--<input type="text" th:field="*{bookAuthor}">-->
+            &lt;!&ndash;<input type="text" th:field="*{bookAuthor}">&ndash;&gt;
             <label>Tag
                 <select th:field="*{tagId}">
                     <option th:each="tag: ${tags}" th:value="${tag.id}" th:text="${tag.tag}"></option>
                 </select>
             </label>
-            <!--<input type="datetime" th:field="*{date}" id="date">-->
+            &lt;!&ndash;<input type="datetime" th:field="*{date}" id="date">&ndash;&gt;
 
             <button type="submit" class="button" value="Submit">Publish</button>
         </form>
 
 
     </div>
+-->
 
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>

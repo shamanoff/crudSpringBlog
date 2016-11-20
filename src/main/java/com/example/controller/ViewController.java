@@ -65,7 +65,7 @@ public class ViewController {
 
         User user = (User) auth.getPrincipal();
         post.setAuthorId(user.getUserId());
-        View view = new RedirectView("/");
+        View view = new RedirectView("/index");
         if (post.getId() == null) {
             postRep.save(post);
             return view;
