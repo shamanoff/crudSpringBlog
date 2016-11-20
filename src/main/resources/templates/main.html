@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
-    <title sec:authentication="principal.username"></title>
+    <title></title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation-icons/3.0/foundation-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.4/foundation.css"/>
     <link rel="stylesheet" th:href="@{/css/app.css}">
@@ -47,10 +47,11 @@
         <div class="top-bar-right">
 
                     <!--<h4 class="fi-torso" sec:authentication="principal.username"></h4>-->
-                  Logged user: <span sec:authentication="name"></span>
+                  <!--Logged user: <span sec:authentication="name"></span>-->
                     <!--Roles: <span sec:authentication="principal.authoritie"></span>-->
 
-                    <a href="/logout" id="btnOut" class="secondary hollow button"><i class="fi-key"></i> Log Out</a>
+                    <a href="/login" class="secondary hollow button btnOut"><i class="fi-key"></i> Log In</a>
+                    <a href="/registration"  class="secondary hollow button btnOut"><i class="fi-key"></i> Sign Up</a>
 
 
 
@@ -132,21 +133,5 @@
     //    document.write(today);
 
 </script>
-
-
-<!--<li class="dropdown">-->
-    <!--<a class="dropdown-toggle" data-toggle="dropdown" href="#">Работа с клиентами-->
-        <!--<span class="caret"></span></a>-->
-    <!--<ul class="dropdown-menu">-->
-        <!--<li><a th:href="@{/client}">Заведение клиентов</a></li>-->
-        <!--<li><a th:href="@{/training}">Запись на тренировку</a></li>-->
-        <!--<li><a th:href="@{/sale}">Продажи</a></li>-->
-        <!--<li><a th:href="@{/events}">Расписание</a></li>-->
-        <!--<li><a th:href="@{/duty}">Дежурства</a></li>-->
-    <!--</ul>-->
-<!--</li>-->
-<!--<li sec:authorize="hasRole('ROLE_TRAINER')">-->
-    <!--<a th:href="@{/end-of-day}">Отчет за смену</a>-->
-<!--</li>-->
 </body>
 </html>

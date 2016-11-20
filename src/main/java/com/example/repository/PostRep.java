@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface PostRep extends JpaRepository<Post, Long> {
 
-    List<Post> findPostByAuthorId(Long authorId);
+    List<Post> findPostByAuthorIdOrderByDateDesc(Long authorId);
+//    List<Post> findPostOrderByDate();
+
 }

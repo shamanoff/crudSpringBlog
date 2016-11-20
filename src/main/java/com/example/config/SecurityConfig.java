@@ -1,11 +1,8 @@
 package com.example.config;
 
-import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -17,7 +14,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
 import static org.springframework.util.Assert.notNull;
 
@@ -32,8 +28,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/login","/registration").permitAll()
-                .antMatchers("/css/**", "/js/**", "/fonts/**", "/webjars/**").permitAll()
+                .antMatchers("/login","/registration", "/").permitAll()
+                .antMatchers("/css/**", "/js/**", "/fonts/**", "/webjars/**", "/img/**").permitAll()
                 .antMatchers("/**").authenticated()
                 .and()
                 .formLogin().loginPage("/login").defaultSuccessUrl("/index", true)
@@ -48,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/css/**", "/js/**", "/fonts/**", "/webjars/**");
+        web.ignoring().antMatchers("/css/**", "/js/**", "/fonts/**", "/webjars/**",  "/img/**");
     }
 
     @Override

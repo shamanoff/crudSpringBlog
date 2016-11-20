@@ -7,6 +7,7 @@ import com.example.repository.PostRep;
 import com.example.repository.TagRep;
 import com.example.repository.UserRep;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,8 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
+import static org.springframework.data.domain.Sort.Direction.DESC;
+
 @Controller
 public class ViewController {
     @Autowired
@@ -26,16 +29,30 @@ public class ViewController {
     @Autowired
     private TagRep tagRep;
 
-    @GetMapping
+
+    @GetMapping({"/","/main"})
+    public ModelAndView main(){
+
+        ModelAndView mv = new ModelAndView("main");
+        List<Tag> tags = tagRep.findAll();
+        List<Post> findedPosts = postRep.findAll(new Sort(DESC, "date"));
+        mv.addObject("posts", findedPosts);
+        mv.addObject("newPost", new Post());
+        mv.addObject("tags", tags);
+        return mv;
+    }
+
+    @GetMapping("/index")
     public ModelAndView index( Authentication auth) {
 
         User user = (User) auth.getPrincipal();
 
 
         ModelAndView mv = new ModelAndView("index");
+
 //        User user = userRep.findByUsername();
         List<Tag> tags = tagRep.findAll();
-        List<Post> findedPosts = postRep.findPostByAuthorId(user.getUserId());
+        List<Post> findedPosts = postRep.findPostByAuthorIdOrderByDateDesc(user.getUserId());
         mv.addObject("posts", findedPosts);
         mv.addObject("newPost", new Post());
         mv.addObject("tags", tags);
